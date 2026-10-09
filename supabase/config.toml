@@ -1,0 +1,27 @@
+# Supabase CLI configuration. Only settings that differ from CLI defaults are listed.
+# Remote projects: dashboard settings win — mirror the [auth] values below in
+# Dashboard → Authentication (see README "Supabase auth settings").
+project_id = "ads-global"
+
+[api]
+schemas = ["public"]
+extra_search_path = ["public", "extensions"]
+
+[db]
+major_version = 17
+
+[db.seed]
+enabled = true
+sql_paths = ["./seed.sql"]
+
+[auth]
+site_url = "http://localhost:3000"
+additional_redirect_urls = ["http://localhost:3000/auth/callback", "https://www.adsglobaltd.com/auth/callback"]
+# Admin accounts are invite-only: nobody can self-register.
+enable_signup = false
+jwt_expiry = 3600
+
+[auth.email]
+enable_signup = false
+double_confirm_changes = true
+enable_confirmations = true

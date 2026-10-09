@@ -1,0 +1,47 @@
+{
+  "name": "ads-global-web",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "ADS Global Limited — corporate website and enquiry management",
+  "engines": {
+    "node": ">=22.18.0"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "next typegen && tsc --noEmit",
+    "lint": "eslint .",
+    "seed:generate": "node scripts/generate-seed.ts",
+    "create-super-admin": "node --env-file-if-exists=.env.local scripts/create-super-admin.ts",
+    "test:rls": "node --env-file-if-exists=.env.local scripts/test-rls.ts",
+    "db:link": "supabase link",
+    "db:push": "supabase db push --include-seed",
+    "test:rls:local": "bash scripts/test-rls-local.sh"
+  },
+  "dependencies": {
+    "@sentry/nextjs": "^10.17.0",
+    "@supabase/ssr": "^0.7.0",
+    "@supabase/supabase-js": "^2.75.0",
+    "lenis": "^1.3.11",
+    "lucide-react": "^0.544.0",
+    "motion": "^12.23.22",
+    "next": "^16.0.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "server-only": "^0.0.1",
+    "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.14",
+    "@types/node": "^22.18.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "eslint": "^9.37.0",
+    "eslint-config-next": "^16.0.0",
+    "supabase": "^2.48.3",
+    "tailwindcss": "^4.1.14",
+    "typescript": "^5.9.3"
+  }
+}
