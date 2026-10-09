@@ -10,9 +10,11 @@ const socialLabels = { linkedin: "LinkedIn", x: "X (Twitter)", facebook: "Facebo
 
 export async function Footer() {
   const [settings, offices, categories] = await Promise.all([getSiteSettings(), getOffices(), getCategories()]);
-  const socials = (Object.keys(socialLabels) as Array<keyof typeof socialLabels>)
-    .map((key) => ({ key, label: socialLabels[key], href: settings.socials[key] }))
-    .filter((s): s is { key: keyof typeof socialLabels; label: string; href: string } => Boolean(s.href));
+  // Only socials with a URL set in Admin. flatMap narrows `href` to string (no type predicate needed).
+  const socials = (Object.keys(socialLabels) as Array<keyof typeof socialLabels>).flatMap((key) => {
+    const href = settings.socials[key];
+    return href ? [{ key, label: socialLabels[key], href }] : [];
+  });
   // Server component: the year is computed once on the server (Africa/Lagos), so it can't mismatch on hydration.
   const year = lagosYear();
 
